@@ -9,6 +9,9 @@ var corOptions = {
     origin: 'http://localhost:8081'
 }
 
+//routers
+const router = require('./routes/charRouter.js')
+
 //middlewares
 app.use(cors(corOptions))
 app.use(express.json())
