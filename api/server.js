@@ -22,9 +22,9 @@ app.get('/', (req,res)=>{
 })
 
 const PORT = process.env.PORT
-const DB_USER = process.env.DB_USER
+
 
 
 app.listen(PORT, ()=>{
-    console.log(`Server is running on port: ${PORT} and user is : ${DB_USER}`)
+    console.log(`Server is running on port: ${PORT}`)
 })
