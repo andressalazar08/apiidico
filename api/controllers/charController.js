@@ -37,16 +37,35 @@ const getAllChar = async(req,res)=>{
 }
 
 
-//todo:3. get single character
+//3. get single character
+const getOneChar = async(req,res)=>{
 
+    let id = req.params.id
+    let chars = await Char.findOne({where:{id:id}})
+    res.status(200).send(chars)
+}
 
-//todo:4. update char info
+//4. update char info
+const updateChar = async(req,res)=>{
 
-//todo:5. delete char by id
+    let id= req.params.id
+    const char = await Char.update(req.body, {where:{id:id}})
+    res.status(200).send(char)
+}
+
+//5. delete char by id
+const deleteChar = async(req,res)=>{
+
+    let id= req.params.id
+    await Char.destroy({where:{id:id}})
+    res.status(200).send('Character is now deleted')
+}
 
 
 module.exports = {
     addChar,
     getAllChar,
-
+    getOneChar,
+    updateChar,
+    deleteChar
 }
