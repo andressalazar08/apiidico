@@ -6,9 +6,9 @@ const bp = require('body-parser')
 const app = express();
 
 
-var corOptions = {
-    origin: 'http://localhost:8081'
-}
+// var corOptions = {
+//     origin: 'http://localhost:8081'
+// }
 
 
 
