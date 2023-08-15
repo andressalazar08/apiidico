@@ -23,6 +23,10 @@ app.use(express.json())
 const router = require('./routes/charRouter.js')
 app.use('/api/characters', router )
 
+//auth routes
+const auth = require('./routes/auth.js')
+app.use('/auth', auth)
+
 //simple api test
 app.get('/', (req,res)=>{
     res.json({
