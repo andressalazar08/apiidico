@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
+const bp = require('body-parser')
 
 const app = express();
 
@@ -9,15 +10,19 @@ var corOptions = {
     origin: 'http://localhost:8081'
 }
 
-//routers
-const router = require('./routes/charRouter.js')
+
+
 
 //middlewares
 app.use(cors(corOptions))
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
 
 
+//routers
+const router = require('./routes/charRouter.js')
+app.use('/api/characters', router )
+
+//simple api test
 app.get('/', (req,res)=>{
     res.json({
         message:'API for IDICO connected - Andres Salazar'

@@ -10,3 +10,5 @@ router.get('/allCharacters', charController.getAllChar)
 router.get('/character/:id', charController.getOneChar)
 router.put('/character/:id', charController.updateChar)
 router.delete('/character/:id', charController.deleteChar)
+
+module.exports = router
