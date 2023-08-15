@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import '../App.css';
 
 
 const ShowChar = () => {
@@ -10,7 +10,8 @@ const ShowChar = () => {
 
   const getChars = async()=>{
 
-    const response = await axios.get(process.env.REACT_APP_BACKEND_URL+"api/characters/allCharacters")
+    const  { data }  = await axios.get(process.env.REACT_APP_BACKEND_URL+"api/characters/allCharacters")
+    setCharacters(data)
 
   }
 
@@ -18,10 +19,20 @@ const ShowChar = () => {
     getChars()
   },[])
   return (
-    <>
-        <h1>All Characters</h1>
+    <div className='App'>
+        <h1>All characters</h1>
 
-    </>
+        {characters.map((c,index)=>{
+           return(
+            <div>
+                <h3 key={index}>{c.name}</h3>
+                <img src={c.image} alt={index}></img>
+            </div>
+           )
+          })
+        }
+
+    </div>
   )
 }
 
