@@ -44,4 +44,10 @@ db.sequelize.sync({ force:false })
     console.log('Resync on DB done!')
 })
 
+//relations between tables definition
+//Many-to-Many
+
+db.characters.belongsToMany(db.movieseries, {through:'Tem_Char_Movie'})
+db.movieseries.belongsToMany(db.characters, {through:'Tem_Char_Movie'})
+
 module.exports =db

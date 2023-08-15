@@ -3,7 +3,7 @@ const db = require('../models');
 
 //create main model
 const Char = db.characters
-const mos = db.movieseries
+const Mos = db.movieseries
 
 //1. create character
 
