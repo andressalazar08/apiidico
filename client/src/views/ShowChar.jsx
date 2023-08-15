@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
-import { Container, Row, Column } from 'react-bootstrap';
+// import { Container, Row, Column } from 'react-bootstrap';
 import ChardCard  from '../components/ChardCard';
 
 const ShowChar = () => {

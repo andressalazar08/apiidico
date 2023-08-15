@@ -9,7 +9,7 @@ const Movies = db.movie
 //1. create character
 
 const addChar = async(req,res)=>{
-
+    try{
     let info={
         image:req.body.image,
         name:req.body.name,
@@ -41,6 +41,9 @@ const addChar = async(req,res)=>{
 
     // console.log(moviesSet);
     res.status(200).send(char)
+}catch(err){
+    console.log(err)
+}
 }
 
 
