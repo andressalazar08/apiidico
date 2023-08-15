@@ -8,8 +8,7 @@ const mos = db.movieseries
 //1. create character
 
 const addChar = async(req,res)=>{
-    console.log('aqui entro')
-    console.log(req.body)
+
     let info={
         image:req.body.image,
         name:req.body.name,
