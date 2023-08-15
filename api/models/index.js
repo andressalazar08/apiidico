@@ -6,11 +6,11 @@ const { Sequelize, DataTypes } = require('sequelize');
 // console.log(` INITIAL HERE ${process.env.DB_USER}`)
 
 const sequelize = new Sequelize(
-    process.env.DB,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
+    process.env.CLOUD_DB_NAME,
+    process.env.CLOUD_DB_USER,
+    process.env.CLOUD_DB_PASSWORD,
     {
-        host:'127.0.0.1',
+        host:process.env.CLOUD_DB_HOST,
         dialect:dbConfig.dialect,
         operatorAliases: false,
         pool:{
