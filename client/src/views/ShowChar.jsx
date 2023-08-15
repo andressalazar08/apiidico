@@ -9,8 +9,9 @@ const ShowChar = () => {
   const [characters, setCharacters] = useState([])
 
   const getChars = async()=>{
-    const response = await axios.get("http://localhost:4000/api/characters/allCharacters")
-    console.log(response)
+
+    const response = await axios.get(process.env.REACT_APP_BACKEND_URL+"api/characters/allCharacters")
+
   }
 
   useEffect(()=>{
