@@ -25,7 +25,7 @@ const ShowChar = () => {
         {characters.map((c,index)=>{
            return(
             <div>
-                <h3 key={index}>{c.name}</h3>
+                <h3 key={index}>{c.name} and {c.id}</h3>
                 <img src={c.image} alt={index}></img>
             </div>
            )

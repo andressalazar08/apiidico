@@ -51,7 +51,8 @@ const getAllChar = async(req,res)=>{
     let chars = await Char.findAll({
         attributes:[
             'image',
-            'name'
+            'name',
+            'id'
         ]
     })
     res.status(200).send(chars)
