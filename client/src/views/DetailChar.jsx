@@ -31,7 +31,7 @@ const DetailChar = () => {
 
   useEffect(()=>{
     getSingleChars()
-  },[])
+  },[id])
 
 
   return (
