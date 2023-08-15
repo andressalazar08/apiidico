@@ -14,7 +14,8 @@ const app = express();
 
 
 //middlewares
-// app.use(cors(corOptions))
+//corOptions
+app.use(cors())
 app.use(express.json())
 
 

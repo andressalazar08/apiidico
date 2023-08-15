@@ -48,7 +48,7 @@ db.sequelize.sync({ force:false })
 //relations between tables definition
 //Many-to-Many
 
-db.characters.belongsToMany(db.movieseries, {through:'Tem_Char_Movie'})
-db.movieseries.belongsToMany(db.characters, {through:'Tem_Char_Movie'})
+// db.characters.belongsToMany(db.movieseries, {through:'Tem_Char_Movie'})
+// db.movieseries.belongsToMany(db.characters, {through:'Tem_Char_Movie'})
 
 module.exports =db
