@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
-
+import { Container, Row, Column } from 'react-bootstrap';
+import ChardCard  from '../components/ChardCard';
 
 const ShowChar = () => {
 
@@ -20,18 +21,17 @@ const ShowChar = () => {
   },[])
   return (
     <div className='App'>
-        <h1>All characters</h1>
+          <div>
+            <h1>All characters</h1>
 
-        {characters.map((c,index)=>{
-           return(
-            <div>
-                <h3 key={index}>{c.name} and {c.id}</h3>
-                <img src={c.image} alt={index}></img>
-            </div>
-           )
-          })
-        }
+            {characters.map((c,index)=>{
+              return(
 
+                <ChardCard character={c} key={index}/>
+              )
+              })
+            }
+          </div>
     </div>
   )
 }
