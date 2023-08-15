@@ -4,6 +4,7 @@ const db = require('../models');
 //create main model
 const Char = db.characters
 const Mos = db.movieseries
+const Movies = db.movie
 
 //1. create character
 
@@ -19,6 +20,26 @@ const addChar = async(req,res)=>{
     }
 
     const char = await Char.create(info)
+
+    //Add movies taken from the new character
+    const moviesSet=[
+        ...new Set(
+            info.relatedmovieserie.split(',').sort()
+        )
+    ]
+
+    for(let i=0; i<moviesSet.length;i++){
+        const movieName = moviesSet[i].replace(" ", "")
+        // let data={name:movieName}
+        await Movies.findOrCreate({
+            where:{
+                name:movieName,
+                nameChar:info.name
+            }
+        })
+    }
+
+    // console.log(moviesSet);
     res.status(200).send(char)
 }
 

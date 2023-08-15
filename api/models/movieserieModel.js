@@ -8,6 +8,7 @@ module.exports = (sequelize,DataTypes)=>{
         },
         title:{
             type:DataTypes.STRING,
+            primaryKey:true,
             allownull:false
         },
         creationdate:{

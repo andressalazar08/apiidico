@@ -2,7 +2,7 @@ const db = require('../models')
 
 //import the model sequelized
 const Mos = db.movieseries
-
+const Movies = db.movie
 
 //functions
 
@@ -19,6 +19,26 @@ const addMoS = async(req,res)=>{
     }
 
     const mos = await Mos.create(data)
+
+    //Add characters taken from the new movie
+    const charSet=[
+        ...new Set(
+            data.relatedchar.split(',').sort()
+        )
+    ]
+
+    for(i=0;i<charSet.length;i++){
+        const charName = charSet[i].replace(" ","")
+        await Movies.findOrCreate({
+            where:{
+                name: data.title,
+                nameChar:charName
+
+            }
+        })
+    }
+
+
     res.status(200).send(mos)
 }
 
