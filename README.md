@@ -6,6 +6,7 @@
 
 - [Resumen](#resumen)
   - [Descripción de la solución](#descripción-de-la-solución)
+  - [Organización de las tareas a realizar](#organización-de-tareas)
   - [Links](#links)
   - [Capturas](#capturas-en-el-frontend)
 - [Mi Proceso](#my-process)
@@ -29,6 +30,27 @@ Los usuarios de la api podrán realizar las siguientes tareas:
 - Realizar el registro de usuario, el login y logout
 - Los usuarios pueden acceder a un panel de administración si se encuentran logueados
 
+### Organización de tareas
+
+Para el desarrollo de la prueba se consideran las siguientes etapas con un estimado en tiempo:
+
+**Desarrollo en el backend**
+
+- Estructuración inicial del proyecto e instalación de primeras dependencias 15 mins
+- Creación de repositorio en github y administración de ramas - 15 mins
+- Configuración de base de datos mysql y prueba de primer modelo- 1 hora
+- Desarrollo de ruta inicial -10 mins
+- Deploy inicial de prueba en render.com con ruta inicial - 10 mins
+- Desarrollo de rutas necesarias, controladores, pruebas en thunder - 1 día
+
+**Desarrollo del frontend**
+
+- Estructuración inicial del proyecto e instalación de primeras dependencias 15 mins
+- Deploy inicial de prueba en vercel.com -15 mins
+- Desarrollo de vistas y componentes necesarios  - 1 día
+
+**Deploy Final**
+- El proyecto fue desarrollado e integrado a los deploys respectivos de manera continua, para adelantarse a la entrega final que requería que el backend estuviera en producción y pudiera ser consumido por cualquier aplicación
 
 ### Links
 
