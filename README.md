@@ -30,6 +30,8 @@ Los usuarios de la api podrán realizar las siguientes tareas:
 - Realizar el registro de usuario, el login y logout
 - Los usuarios pueden acceder a un panel de administración si se encuentran logueados
 
+https://youtu.be/cAZEAxWJa4s
+
 ### Organización de tareas
 
 Para el desarrollo de la prueba se consideran las siguientes etapas con un estimado en tiempo:
