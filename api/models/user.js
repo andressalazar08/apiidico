@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config({path: 'api/.env'});
-
+const bcrypt = require('bcryptjs');
 module.exports = (sequelize,DataTypes)=>{
 
     const User = sequelize.define("user",{
@@ -35,6 +35,10 @@ module.exports = (sequelize,DataTypes)=>{
         return jwt.sign({id:this.id}, process.env.JWT_SECRET,{
             expiresIn: process.env.JWT_EXPIRES_TIME
         });
+    }
+
+    User.prototype.comparePassword = async function(enteredPassword){
+        return await bcrypt.compare(enteredPassword, this.password)
     }
 
 

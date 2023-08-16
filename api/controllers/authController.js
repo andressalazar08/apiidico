@@ -19,3 +19,58 @@ exports.registerUser =async(req, res)=>{
     })
     sendToken(user, 200, res)
 }
+
+
+exports.loginUser =async(req, res)=>{
+
+    const { email, password } = req.body;
+    //checks if email and password is entered by user
+    if(!email || !password){
+        return res.status(401).json({
+            success:false,
+            message:"Please enter email & password"
+        })
+    }
+    //finding user in database
+    const user = await Users.findOne({where:{ email:email }});
+
+    if(!user){
+        return res.status(401).json({
+            success:false,
+            message:"Invalid Email"
+        })
+    }
+    //Checks if password is correct or not
+    const isPasswordMatched = await user.comparePassword(password)
+    if(!isPasswordMatched){
+        return res.status(401).json({
+            success:false,
+            message:"Invalid Password"
+        })
+    }
+    sendToken(user, 200, res)
+}
+
+
+exports.logout = async(req, res)=>{
+    res.cookie('token', null, {
+        expires:new Date(Date.now()),
+        httpOnly:true
+    })
+
+    res.status(200).json({
+        success:true,
+        message: 'Logged out'
+    })
+}
+
+
+exports.allUsers = async(req, res, next)=>{
+
+    const users = await Users.findAll();
+
+    res.status(200).json({
+        success:true,
+        users
+    })
+}

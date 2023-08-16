@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
-const bp = require('body-parser')
+const bp = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -17,7 +18,7 @@ const app = express();
 //corOptions
 app.use(cors())
 app.use(express.json())
-
+app.use(cookieParser())
 
 //routers
 const router = require('./routes/charRouter.js')
