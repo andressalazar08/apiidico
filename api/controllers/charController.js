@@ -87,11 +87,13 @@ const deleteChar = async(req,res)=>{
 }
 
 
-//6. characters search
+//6. characters search by query
 const queryCharacters =  async(req,res)=>{
 
     let name = req.query.name
-    if(name){
+    let age = req.query.age
+
+    if(name&&!age){
         const findChar = await Char.findOne({where:{name:name}})
         if(findChar){
             res.status(200).send(findChar)
@@ -101,8 +103,30 @@ const queryCharacters =  async(req,res)=>{
                 message: 'Character not found'
             })
         }
+    }
 
+    if(name&&age){
+        const findChar = await Char.findOne({where:{name:name, age:age}})
+        if(findChar){
+            res.status(200).send(findChar)
+        }else{
+            res.status(404).json({
+                success:false,
+                message: 'Character with that name and that age not found'
+            })
+        }
+    }
 
+    if(!name&&age){
+        const findChar = await Char.findOne({where:{ age:age}})
+        if(findChar){
+            res.status(200).send(findChar)
+        }else{
+            res.status(404).json({
+                success:false,
+                message: 'Character with that age not found'
+            })
+        }
     }
 
 }
