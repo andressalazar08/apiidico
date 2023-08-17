@@ -92,6 +92,19 @@ const queryCharacters =  async(req,res)=>{
 
     let name = req.query.name
     let age = req.query.age
+    let movies = req.query.movies
+
+    if(movies){
+        const findmovie = await Movies.findAll({where:{name:movies}})
+        if(findmovie.length>0){
+            res.status(200).send(findmovie)
+        }else{
+            res.status(404).json({
+                success:false,
+                message: 'Movie not found on DB'
+            })
+        }
+    }
 
     if(name&&!age){
         const findChar = await Char.findOne({where:{name:name}})
