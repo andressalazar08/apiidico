@@ -87,10 +87,33 @@ const deleteChar = async(req,res)=>{
 }
 
 
+//6. characters search
+const queryCharacters =  async(req,res)=>{
+
+    let name = req.query.name
+    if(name){
+        const findChar = await Char.findOne({where:{name:name}})
+        if(findChar){
+            res.status(200).send(findChar)
+        }else{
+            res.status(404).json({
+                success:false,
+                message: 'Character not found'
+            })
+        }
+
+
+    }
+
+}
+
+
+
 module.exports = {
     addChar,
     getAllChar,
     getOneChar,
     updateChar,
-    deleteChar
+    deleteChar,
+    queryCharacters
 }

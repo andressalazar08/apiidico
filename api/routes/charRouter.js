@@ -7,6 +7,7 @@ const router = require('express').Router();
 //use routers
 router.post('/addChar', charController.addChar)
 router.get('/allCharacters', charController.getAllChar)
+router.get('/find', charController.queryCharacters)
 
 router.get('/character/:id', charController.getOneChar)
 router.put('/character/:id', charController.updateChar)
