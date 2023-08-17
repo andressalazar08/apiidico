@@ -37,7 +37,7 @@ db.sequelize = sequelize
 
 db.characters = require('./charModel.js')(sequelize, DataTypes)
 db.movieseries = require('./movieserieModel.js')(sequelize, DataTypes)
-db.movie = require('./movieModel.js')(sequelize, DataTypes)
+
 db.typecontents = require('./typecontentModel.js')(sequelize, DataTypes)
 db.users = require('./user.js')(sequelize, DataTypes)
 

@@ -144,7 +144,34 @@ const queryCharacters =  async(req,res)=>{
 
 }
 
+const moviesInfo= async(req,res)=>{
 
+    let id = req.params.id
+
+    const movies = await Mos.findAll({where:{id:id}})
+
+    if(movies.length>0){
+        res.status(200).send(movies)
+    }else{
+        res.status(200).json({
+            message:"This movie is not found"
+        })
+    }
+}
+
+
+const allMovies = async(req,res)=>{
+
+    const movies = await Mos.findAll({})
+
+        if(movies.length>0){
+            res.status(200).send(movies)
+        }else{
+            res.status(200).json({
+                message:"No movies found on DB"
+            })
+        }
+}
 
 module.exports = {
     addChar,
@@ -152,5 +179,8 @@ module.exports = {
     getOneChar,
     updateChar,
     deleteChar,
-    queryCharacters
+    queryCharacters,
+    moviesInfo,
+    allMovies
+
 }

@@ -7,7 +7,12 @@ const router = require('express').Router();
 //use routers
 router.post('/addChar', charController.addChar)
 router.get('/allCharacters', charController.getAllChar)
+//route to find characters by query
 router.get('/find', charController.queryCharacters)
+//route to get all movies info by id
+router.get('/allMovies', charController.allMovies)
+//route to get a movie by id
+router.get('/movie/:id', charController.moviesInfo)
 
 router.get('/character/:id', charController.getOneChar)
 router.put('/character/:id', charController.updateChar)
