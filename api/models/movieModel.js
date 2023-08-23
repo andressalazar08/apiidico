@@ -3,10 +3,11 @@ module.exports = (sequelize, DataTypes )=>{
     const Movies = sequelize.define('Movies',{
         image:{
             type:DataTypes.STRING,
-            allownull:false
+
         },
         title:{
-            type:DataTypes.STRING
+            type:DataTypes.STRING,
+            primaryKey:true
         },
         creationDate:{
             type:DataTypes.DATE

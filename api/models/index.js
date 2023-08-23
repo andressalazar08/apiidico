@@ -39,7 +39,7 @@ db.sequelize = sequelize
 //Models integration to the db object
 db.characters = require ('./characterModel.js')(sequelize, DataTypes)
 db.movies = require('./movieModel.js')(sequelize, DataTypes);
-
+db.character_movies = require('./characterMovieModel.js')(sequelize, DataTypes)
 
 
 
@@ -49,5 +49,8 @@ db.sequelize.sync({force:true})
     console.log('Resync on DB done!')
 })
 
+//Many to Many relationships
+db.characters.belongsToMany(db.movies, {through: db.character_movies})
+db.movies.belongsToMany(db.characters, {through:db.character_movies})
 
 module.exports = db
