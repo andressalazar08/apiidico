@@ -36,7 +36,13 @@ const db={}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+//Models integration to the db object
 db.characters = require ('./characterModel.js')(sequelize, DataTypes)
+db.movies = require('./movieModel.js')(sequelize, DataTypes);
+
+
+
+
 
 db.sequelize.sync({force:true})
 .then(()=>{

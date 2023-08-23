@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes)=>{
         history:{
             type:DataTypes.TEXT
         }
-    })
+    },
+    {timestamps:false}
+    )
 
     return Character
 

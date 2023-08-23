@@ -25,6 +25,9 @@ app.get('/', (req,res)=>{
 const routerChar = require('./routes/characterRoute')
 app.use('/api', routerChar)
 
+//2. Routes on movies
+const routerMov = require('./routes/movieRoute')
+app.use('/api', routerMov)
 
 const PORT = process.env.PORT
 
