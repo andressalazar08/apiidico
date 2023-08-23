@@ -21,6 +21,11 @@ app.get('/', (req,res)=>{
     })
 })
 
+//1. Routes on characters
+const routerChar = require('./routes/characterRoute')
+app.use('/api', routerChar)
+
+
 const PORT = process.env.PORT
 
 app.listen(PORT, ()=>{
