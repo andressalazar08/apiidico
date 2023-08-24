@@ -10,6 +10,9 @@ router.get('/', characterController.getCharacters)
 router.put('/:name', characterController.updateCharacter)
 //4. delete a character by name
 router.delete('/:name', characterController.deleteCharacter)
+//5. get character detail by name
+router.get('/:name', characterController.getCharacterByName)
+
 
 
 module.exports = router

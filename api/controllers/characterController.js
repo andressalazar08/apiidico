@@ -109,9 +109,33 @@ const deleteCharacter = async(req,res)=>{
 }
 
 
+//5. Get detail of a character by name
+// use [Get] localhost:4000/characters/:name
+const getCharacterByName = async (req, res)=>{
+
+    let name= req.params.name
+    const charFound = await Character.findOne({
+        where:{name:name},
+        include:Movie
+    })
+    if(name&&charFound){
+        res.status(400).json({
+            message:"Character found",
+            charFound
+        })
+    }else{
+        res.status(200).json({
+            message:"Please indicate a character to find"
+        })
+    }
+
+}
+
+
 module.exports= {
     addCharacter,
     getCharacters,
     updateCharacter,
-    deleteCharacter
+    deleteCharacter,
+    getCharacterByName
 }
