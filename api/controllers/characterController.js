@@ -20,9 +20,21 @@ const addCharacter = async (req,res)=>{
         title:req.body.title
     }
 
-    const character = await Character.create(characterInfo)
-    const movie = await Movie.create(movieInfo)
-    await character.addMovie(movie)
+    //Validate if character info exist on table character
+    const charExists = await Character.findOne({where:{name:characterInfo.name}})
+    if(!charExists){
+        const character = await Character.create(characterInfo)
+    }
+
+    //Validate if movie info exists on table movies
+    const movieExists = await Movie.findOne({where:{title:movieInfo.title}})
+    if(!movieExists){
+        const movie = await Movie.create(movieInfo)
+    }
+
+    const character = await Character.findOne({where:{name:characterInfo.name}})
+    const movie = await Movie.findOne({where:{title:movieInfo.title}})
+    await character.addMovie(movie) //This is the new method that comes with many to many relationships
 
     const result = await Character.findOne({
         where: {name:characterInfo.name},
