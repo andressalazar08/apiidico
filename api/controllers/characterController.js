@@ -2,6 +2,7 @@ const db = require('../models');
 
 const Character = db.characters;
 const Movie = db.movies;
+const Charactermovie =db.character_movies;
 
 //Main work
 
@@ -52,18 +53,91 @@ const addCharacter = async (req,res)=>{
 //2. Get all characters
 // use [Get] localhost:4000/characters/
 const getCharacters = async (req,res)=>{
-    const result= await Character.findAll({
-        attributes:[
-            'image',
-            'name'
-        ],
-        include:Movie,
-        //paranoid:false  este argumento permitiría consultar incluso los que tengan borrado soft con paranoid
-    })
-    res.status(200).json({
-        message:"All characters retrieved",
-        result
-    })
+
+    let name = req.query.name
+    let age = req.query.age
+    let movie = req.query.movie
+
+    if(!name&&!age&&!movie){
+        const result= await Character.findAll({
+            attributes:[
+                'image',
+                'name'
+            ],
+            include:Movie,
+            //paranoid:false  este argumento permitiría consultar incluso los que tengan borrado soft con paranoid
+        })
+        res.status(200).json({
+            message:"All characters retrieved",
+            result
+        })
+    }
+
+    if(name){
+        const result= await Character.findAll({
+            where:{name:name},
+            // attributes:[
+            //     'image',
+            //     'name'
+            // ],
+            include:Movie,
+            //paranoid:false  este argumento permitiría consultar incluso los que tengan borrado soft con paranoid
+        })
+        if(result.length>0){
+            res.status(200).json({
+                message:"The character you requested is:",
+                result
+            })
+        }else{
+            res.status(404).json({
+                message:"The character you requested is not found",
+             })
+        }
+    }
+
+
+
+    if(age){
+        const result= await Character.findAll({
+            where:{age:age},
+            // attributes:[
+            //     'image',
+            //     'name'
+            // ],
+            include:Movie,
+
+        })
+        if(result.length>0){
+            res.status(200).json({
+                message:"The character you requested is:",
+                result
+            })
+        }else{
+            res.status(404).json({
+                message:"The character you requested by age is not found",
+             })
+        }
+    }
+
+
+    if(movie){
+        const result= await Movie.findAll({
+            where:{title:movie},
+
+            include:Character
+
+        })
+        if(result.length>0){
+            res.status(200).json({
+                message:"The character and movies related you requested are:",
+                result
+            })
+        }else{
+            res.status(404).json({
+                message:"The character you requested by movie is not found",
+             })
+        }
+    }
 }
 
 //3. edit a character
@@ -119,13 +193,13 @@ const getCharacterByName = async (req, res)=>{
         include:Movie
     })
     if(name&&charFound){
-        res.status(400).json({
+        res.status(200).json({
             message:"Character found",
             charFound
         })
     }else{
-        res.status(200).json({
-            message:"Please indicate a character to find"
+        res.status(404).json({
+            message:"Please review the character to find"
         })
     }
 
