@@ -86,8 +86,30 @@ const updateCharacter = async (req,res)=>{
 
 }
 
+
+const deleteCharacter = async(req,res)=>{
+
+    let name = req.params.name
+    let charFound = Character.findOne({where:{name:name}})
+
+    if(name&&charFound){
+
+        await Character.destroy({where:{name:name}})
+        res.status(200).json({
+            message:"Character deleted successfully"
+        })
+
+    }else{
+        res.status(404).json({
+            message:"Character not found, nothing to delete"
+        })
+    }
+}
+
+
 module.exports= {
     addCharacter,
     getCharacters,
-    updateCharacter
+    updateCharacter,
+    deleteCharacter
 }

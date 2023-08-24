@@ -8,5 +8,8 @@ router.post('/addCharacter', characterController.addCharacter)
 router.get('/', characterController.getCharacters)
 //3. update a character by name
 router.put('/:name', characterController.updateCharacter)
+//4. delete a character by name
+router.delete('/:name', characterController.deleteCharacter)
+
 
 module.exports = router
