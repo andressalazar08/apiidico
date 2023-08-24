@@ -46,7 +46,7 @@ db.genders = require('./genderModel.js')(sequelize, DataTypes)
 
 
 
-db.sequelize.sync({force:true})
+db.sequelize.sync({force:false})
 .then(()=>{
     console.log('Resync on DB done!')
 })
