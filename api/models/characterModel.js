@@ -20,7 +20,11 @@ module.exports = (sequelize, DataTypes)=>{
             type:DataTypes.TEXT
         }
     },
-    {timestamps:false}
+    {
+        paranoid:true,
+        deletedAt:'destroyTime'
+    },
+    {timestamps:true}
     )
 
     return Character

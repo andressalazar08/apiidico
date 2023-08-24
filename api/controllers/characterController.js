@@ -57,7 +57,8 @@ const getCharacters = async (req,res)=>{
             'image',
             'name'
         ],
-        include:Movie
+        include:Movie,
+        //paranoid:false  este argumento permitiría consultar incluso los que tengan borrado soft con paranoid
     })
     res.status(200).json({
         message:"All characters retrieved",
@@ -86,14 +87,15 @@ const updateCharacter = async (req,res)=>{
 
 }
 
-
+//4. delete a character
+// use [DELETE] localhost:4000/characters/:name
 const deleteCharacter = async(req,res)=>{
 
     let name = req.params.name
     let charFound = Character.findOne({where:{name:name}})
 
     if(name&&charFound){
-
+        //paraonoid:true permite no borrar el registro, solo agrega una columna para rastrear la petición
         await Character.destroy({where:{name:name}})
         res.status(200).json({
             message:"Character deleted successfully"
