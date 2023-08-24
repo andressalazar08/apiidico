@@ -29,6 +29,10 @@ app.use('/api', routerChar)
 const routerMov = require('./routes/movieRoute')
 app.use('/api', routerMov)
 
+//3. Routes on gender
+const routerGender = require('./routes/genderRoute')
+app.use('/api', routerGender)
+
 const PORT = process.env.PORT
 
 app.listen(PORT, ()=>{
