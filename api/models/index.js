@@ -55,4 +55,10 @@ db.sequelize.sync({force:true})
 db.characters.belongsToMany(db.movies, {through: db.character_movies})
 db.movies.belongsToMany(db.characters, {through:db.character_movies})
 
+//May to Many relationships between gender and movies on a default table
+db.genders.belongsToMany(db.movies, {through:'gender_movies'})
+db.movies.belongsToMany(db.genders, {through:'gender_movies'})
+
+
+
 module.exports = db
