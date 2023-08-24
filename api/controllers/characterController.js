@@ -6,7 +6,7 @@ const Movie = db.movies;
 //Main work
 
 //1. Create a character
-// use /addCharacter
+// use [POST] localhost:4000/characters/addCharacter
 const addCharacter = async (req,res)=>{
     let characterInfo = {
         image:req.body.image,
@@ -49,6 +49,45 @@ const addCharacter = async (req,res)=>{
 }
 
 
+//2. Get all characters
+// use [Get] localhost:4000/characters/
+const getCharacters = async (req,res)=>{
+    const result= await Character.findAll({
+        attributes:[
+            'image',
+            'name'
+        ],
+        include:Movie
+    })
+    res.status(200).json({
+        message:"All characters retrieved",
+        result
+    })
+}
+
+//3. edit a character
+// use [PUT] localhost:4000/characters/:name
+const updateCharacter = async (req,res)=>{
+
+    let name=req.params.name
+    let charFound = await Character.findOne({where:{name:name}})
+
+    if(name&&charFound){
+        const character = await Character.update(req.body, {where:{name:name}}) //update(req.body) actualiza el (los) parametro(s) entregados por body
+        res.status(200).json({
+            message: "Character updated successfully"
+        })
+    }else{
+        res.status(404).json({
+            message:"Please indicate a character to update"
+        })
+    }
+
+
+}
+
 module.exports= {
-    addCharacter
+    addCharacter,
+    getCharacters,
+    updateCharacter
 }

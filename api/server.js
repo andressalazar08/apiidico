@@ -23,7 +23,7 @@ app.get('/', (req,res)=>{
 
 //1. Routes on characters
 const routerChar = require('./routes/characterRoute')
-app.use('/api', routerChar)
+app.use('/characters', routerChar)
 
 //2. Routes on movies
 const routerMov = require('./routes/movieRoute')
