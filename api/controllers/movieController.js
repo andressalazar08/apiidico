@@ -48,7 +48,49 @@ const addMovie = async(req, res)=>{
     })
 }
 
+
+//2. get al movies
+//http://localhost:4000/movies
+const getMovies = async(req, res)=>{
+
+    const allMovies = await Movie.findAll({})
+
+    res.status(200).json({
+        message:"All movies retrieved",
+        allMovies
+    })
+
+}
+
+//3. get movie detail by param name
+// use [Get] localhost:4000/movies/:name
+const getMovieByTitle= async(req,res)=>{
+
+    let title = req.params.title
+
+    if(title){
+        const movieToFind = await Movie.findOne({
+            where:{title:title},
+            include: Character
+
+        })
+        if(movieToFind){
+            res.status(200).json({
+                message:"Movie found correctly",
+                movieToFind
+            })
+        }else{
+            res.status(404).json({
+                message:"Movie not found"
+            })
+        }
+    }
+
+}
+
 module.exports={
-    addMovie
+    addMovie,
+    getMovies,
+    getMovieByTitle
 }
 

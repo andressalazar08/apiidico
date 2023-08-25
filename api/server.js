@@ -27,7 +27,7 @@ app.use('/characters', routerChar)
 
 //2. Routes on movies
 const routerMov = require('./routes/movieRoute')
-app.use('/api', routerMov)
+app.use('/movies', routerMov)
 
 //3. Routes on gender
 const routerGender = require('./routes/genderRoute')
