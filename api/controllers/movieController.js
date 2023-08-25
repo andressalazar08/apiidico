@@ -2,6 +2,7 @@ const db = require('../models');
 
 const Movie = db.movies;
 const Character = db.characters;
+const Gender = db.genders;
 
 //Main work
 
@@ -71,7 +72,7 @@ const getMovieByTitle= async(req,res)=>{
     if(title){
         const movieToFind = await Movie.findOne({
             where:{title:title},
-            include: Character
+            include: [Character, Gender]
 
         })
         if(movieToFind){
